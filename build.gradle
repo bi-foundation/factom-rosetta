@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.blockchain-innovation.factom.client:logger-slf4j:0.3.0-SNAPSHOT'
     implementation 'org.blockchain-innovation.factom.client:json-converter-gson:0.3.0-SNAPSHOT'
     implementation 'org.blockchain-innovation.factom.client:factom-client-offline-signing:0.3.0-SNAPSHOT'
+    implementation 'org.blockchain-innovation.factom.client:spring-boot-support:0.3.0-SNAPSHOT'
 
     compile 'javax.xml.bind:jaxb-api:2.3.1'
     compile 'javax.validation:validation-api:2.0.1.Final'
