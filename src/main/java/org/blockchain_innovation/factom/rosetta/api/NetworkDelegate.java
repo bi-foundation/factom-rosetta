@@ -50,12 +50,11 @@ public class NetworkDelegate {
         return networkOptionsResponse;
     }
 
-    @Cacheable
     public BlockIdentifier genesisBlockIdentifier(NetworkIdentifier networkIdentifier) {
         return getBlockIdentifier(networkIdentifier, 0);
     }
 
-    @Cacheable
+    @Cacheable("blockids")
     public BlockIdentifier getBlockIdentifier(NetworkIdentifier networkIdentifier, long index) {
         BlockIdentifier blockIdentifier = new BlockIdentifier();
 

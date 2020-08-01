@@ -1,6 +1,5 @@
 package org.blockchain_innovation.factom.rosetta.api.factom.client;
 
-import lombok.SneakyThrows;
 import org.blockchain_innovation.factom.client.api.FactomdClient;
 import org.blockchain_innovation.factom.client.api.SigningMode;
 import org.blockchain_innovation.factom.client.api.WalletdClient;
@@ -20,10 +19,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Named;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -42,11 +43,11 @@ public class Networks {
     private final Map<String, WalletdClient> walletdClients = new HashMap<>();
     private final Environment environment;
     private final FactomRosettaTranslations translation;
-    private final ObjectProvider<FactomdClientImpl> factomdProvider;
-    private final ObjectProvider<WalletdClientImpl> walletdProvider;
+    private final ObjectProvider<FactomdClient> factomdProvider;
+    private final ObjectProvider<WalletdClient> walletdProvider;
 
     @Autowired
-    public Networks(Environment environment, FactomRosettaTranslations translation, ObjectProvider<FactomdClientImpl> factomdProvider, ObjectProvider<WalletdClientImpl> walletdProvider) {
+    public Networks(Environment environment, FactomRosettaTranslations translation, @Named("factomdClient") ObjectProvider<FactomdClient> factomdProvider, @Named("walletdClient") ObjectProvider<WalletdClient> walletdProvider) {
         this.environment = environment;
         this.translation = translation;
         this.factomdProvider = factomdProvider;
@@ -63,7 +64,7 @@ public class Networks {
 
         if (!factomdClients.containsKey(id)) {
             SpringRpcSettings springRpcSettings = rpcSettings(network);
-            FactomdClientImpl factomdClient = (FactomdClientImpl) factomdProvider.getObject();
+            FactomdClientImpl factomdClient = (FactomdClientImpl) factomdProvider.getObject(springRpcSettings);
             factomdClient.setSettings(new RpcSettingsImpl(RpcSettings.SubSystem.FACTOMD, springRpcSettings.getFactomdServer()));
             factomdClient.setExecutorService(Executors.newFixedThreadPool(springRpcSettings.getFactomdServer().getThreads()));
             factomdClients.put(id, factomdClient);
@@ -90,7 +91,7 @@ public class Networks {
         SpringRpcSettings springRpcSettings = rpcSettings(network);
 
         SigningMode signingMode = explicitSigningMode.orElse(springRpcSettings.getWalletdServer().getSigningMode());
-        if (!factomdClients.containsKey(id)) {
+        if (!walletdClients.containsKey(id)) {
             List<WalletdClient> availableClients = walletdProvider.stream().filter(walletdClient -> signingMode == walletdClient.signingMode()).collect(Collectors.toList());
             if (availableClients.size() == 0) {
                 throw new RuntimeException("Could not find a walletd client on classpath that satisfies signing mode: " + signingMode.name());
@@ -114,7 +115,7 @@ public class Networks {
     }
 
 
-    @Cacheable
+    @Cacheable("versions")
     public Version getVersion(NetworkIdentifier networkIdentifier) {
         try {
             String nodeVersion = factomd(networkIdentifier).properties().get().getResult().getFactomdVersion();
@@ -127,8 +128,12 @@ public class Networks {
     }
 
     public SpringRpcSettings rpcSettings(Optional<String> network) {
-        Binder binder = Binder.get(environment);
-        return binder.bind(network.orElse(MAINNET), SpringRpcSettings.class).get();
+        try {
+            Binder binder = Binder.get(environment);
+            return binder.bind(network.orElse(MAINNET), SpringRpcSettings.class).get();
+        } catch (NoSuchElementException nse) {
+            throw new RosettaExceptions.AssertionException(String.format("Network '%s' was not correctly configured on this rosetta node!", network.orElse(MAINNET)));
+        }
     }
 
 

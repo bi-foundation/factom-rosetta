@@ -1,16 +1,20 @@
 package org.blockchain_innovation.factom.rosetta;
 
+import org.blockchain_innovation.factom.client.spring.FactomConfiguration;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
-
+import org.springframework.context.annotation.Import;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan(basePackages = { "org.blockchain_innovation.factom.client", "org.blockchain_innovation.factom.rosetta", "org.blockchain_innovation.factom.rosetta.api" , "org.blockchain_innovation.factom.rosetta.configuration"})
+@EnableCaching
+@Import(FactomConfiguration.class)
+@ComponentScan(basePackages = {"org.blockchain_innovation.factom.client", "org.blockchain_innovation.factom.rosetta", "org.blockchain_innovation.factom.rosetta.api", "org.blockchain_innovation.factom.rosetta.configuration"})
 public class FactomRosettaApplication implements CommandLineRunner {
 
     @Override
