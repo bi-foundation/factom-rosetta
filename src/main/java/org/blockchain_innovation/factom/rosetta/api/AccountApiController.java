@@ -6,6 +6,7 @@ import org.blockchain_innovation.factom.rosetta.model.AccountBalanceRequest;
 import org.blockchain_innovation.factom.rosetta.model.AccountBalanceResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class AccountApiController implements AccountApi {
 
     private final HttpServletRequest request;
 
-    @org.springframework.beans.factory.annotation.Autowired
+    @Autowired
     public AccountApiController(AccountDelegate accountDelegate, ObjectMapper objectMapper, HttpServletRequest request) {
         this.accountDelegate = accountDelegate;
         this.objectMapper = objectMapper;
@@ -34,18 +35,7 @@ public class AccountApiController implements AccountApi {
     }
 
     public ResponseEntity<AccountBalanceResponse> accountBalance(@ApiParam(value = "", required = true) @Valid @RequestBody AccountBalanceRequest body) {
-//        body.getNetworkIdentifier()
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<AccountBalanceResponse>(objectMapper.readValue("{\n  \"balances\" : [ {\n    \"metadata\" : { },\n    \"currency\" : {\n      \"symbol\" : \"BTC\",\n      \"metadata\" : {\n        \"Issuer\" : \"Satoshi\"\n      },\n      \"decimals\" : 8\n    },\n    \"value\" : \"1238089899992\"\n  }, {\n    \"metadata\" : { },\n    \"currency\" : {\n      \"symbol\" : \"BTC\",\n      \"metadata\" : {\n        \"Issuer\" : \"Satoshi\"\n      },\n      \"decimals\" : 8\n    },\n    \"value\" : \"1238089899992\"\n  } ],\n  \"metadata\" : {\n    \"sequence_number\" : 23\n  },\n  \"block_identifier\" : {\n    \"index\" : 1123941,\n    \"hash\" : \"0x1f2cc6c5027d2f201a5453ad1119574d2aed23a392654742ac3c78783c071f85\"\n  }\n}", AccountBalanceResponse.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<AccountBalanceResponse>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<AccountBalanceResponse>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<AccountBalanceResponse>(accountDelegate.accountBalance(body), HttpStatus.OK);
     }
 
 }

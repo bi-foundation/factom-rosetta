@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan(basePackages = { "org.blockchain_innovation.factom.rosetta", "org.blockchain_innovation.factom.rosetta.api" , "org.blockchain_innovation.factom.rosetta.configuration"})
+@ComponentScan(basePackages = { "org.blockchain_innovation.factom.client", "org.blockchain_innovation.factom.rosetta", "org.blockchain_innovation.factom.rosetta.api" , "org.blockchain_innovation.factom.rosetta.configuration"})
 public class FactomRosettaApplication implements CommandLineRunner {
 
     @Override
