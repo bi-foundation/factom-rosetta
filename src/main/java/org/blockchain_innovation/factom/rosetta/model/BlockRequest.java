@@ -3,10 +3,9 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.NetworkIdentifier;
 import org.blockchain_innovation.factom.rosetta.model.PartialBlockIdentifier;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,9 +13,11 @@ import javax.validation.constraints.*;
 /**
  * A BlockRequest is utilized to make a block request on the /block endpoint.
  */
-@ApiModel(description = "A BlockRequest is utilized to make a block request on the /block endpoint.")
+@Schema(description = "A BlockRequest is utilized to make a block request on the /block endpoint.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class BlockRequest   {
   @JsonProperty("network_identifier")
   private NetworkIdentifier networkIdentifier = null;
@@ -32,8 +33,8 @@ public class BlockRequest   {
   /**
    * Get networkIdentifier
    * @return networkIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -53,8 +54,8 @@ public class BlockRequest   {
   /**
    * Get blockIdentifier
    * @return blockIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid

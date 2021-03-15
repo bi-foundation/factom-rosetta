@@ -3,8 +3,7 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,9 +11,11 @@ import javax.validation.constraints.*;
 /**
  * The Version object is utilized to inform the client of the versions of different components of the Rosetta implementation.
  */
-@ApiModel(description = "The Version object is utilized to inform the client of the versions of different components of the Rosetta implementation.")
+@Schema(description = "The Version object is utilized to inform the client of the versions of different components of the Rosetta implementation.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class Version   {
   @JsonProperty("rosetta_version")
   private String rosettaVersion = null;
@@ -36,8 +37,8 @@ public class Version   {
   /**
    * The rosetta_version is the version of the Rosetta interface the implementation adheres to. This can be useful for clients looking to reliably parse responses.
    * @return rosettaVersion
-  **/
-  @ApiModelProperty(example = "1.2.5", required = true, value = "The rosetta_version is the version of the Rosetta interface the implementation adheres to. This can be useful for clients looking to reliably parse responses.")
+   **/
+  @Schema(example = "1.2.5", required = true, description = "The rosetta_version is the version of the Rosetta interface the implementation adheres to. This can be useful for clients looking to reliably parse responses.")
       @NotNull
 
     public String getRosettaVersion() {
@@ -56,8 +57,8 @@ public class Version   {
   /**
    * The node_version is the canonical version of the node runtime. This can help clients manage deployments.
    * @return nodeVersion
-  **/
-  @ApiModelProperty(example = "1.0.2", required = true, value = "The node_version is the canonical version of the node runtime. This can help clients manage deployments.")
+   **/
+  @Schema(example = "1.0.2", required = true, description = "The node_version is the canonical version of the node runtime. This can help clients manage deployments.")
       @NotNull
 
     public String getNodeVersion() {
@@ -76,8 +77,8 @@ public class Version   {
   /**
    * When a middleware server is used to adhere to the Rosetta interface, it should return its version here. This can help clients manage deployments.
    * @return middlewareVersion
-  **/
-  @ApiModelProperty(example = "0.2.7", value = "When a middleware server is used to adhere to the Rosetta interface, it should return its version here. This can help clients manage deployments.")
+   **/
+  @Schema(example = "0.2.7", description = "When a middleware server is used to adhere to the Rosetta interface, it should return its version here. This can help clients manage deployments.")
   
     public String getMiddlewareVersion() {
     return middlewareVersion;
@@ -95,8 +96,8 @@ public class Version   {
   /**
    * Any other information that may be useful about versioning of dependent services should be returned here.
    * @return metadata
-  **/
-  @ApiModelProperty(value = "Any other information that may be useful about versioning of dependent services should be returned here.")
+   **/
+  @Schema(description = "Any other information that may be useful about versioning of dependent services should be returned here.")
   
     public Object getMetadata() {
     return metadata;

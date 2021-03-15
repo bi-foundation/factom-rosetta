@@ -3,11 +3,10 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.PublicKey;
 import org.blockchain_innovation.factom.rosetta.model.SignatureType;
 import org.blockchain_innovation.factom.rosetta.model.SigningPayload;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -15,9 +14,11 @@ import javax.validation.constraints.*;
 /**
  * Signature contains the payload that was signed, the public keys of the keypairs used to produce the signature, the signature (encoded in hex), and the SignatureType. PublicKey is often times not known during construction of the signing payloads but may be needed to combine signatures properly.
  */
-@ApiModel(description = "Signature contains the payload that was signed, the public keys of the keypairs used to produce the signature, the signature (encoded in hex), and the SignatureType. PublicKey is often times not known during construction of the signing payloads but may be needed to combine signatures properly.")
+@Schema(description = "Signature contains the payload that was signed, the public keys of the keypairs used to produce the signature, the signature (encoded in hex), and the SignatureType. PublicKey is often times not known during construction of the signing payloads but may be needed to combine signatures properly.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class Signature   {
   @JsonProperty("signing_payload")
   private SigningPayload signingPayload = null;
@@ -39,8 +40,8 @@ public class Signature   {
   /**
    * Get signingPayload
    * @return signingPayload
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -60,8 +61,8 @@ public class Signature   {
   /**
    * Get publicKey
    * @return publicKey
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -81,8 +82,8 @@ public class Signature   {
   /**
    * Get signatureType
    * @return signatureType
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -102,8 +103,8 @@ public class Signature   {
   /**
    * Get hexBytes
    * @return hexBytes
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     public String getHexBytes() {

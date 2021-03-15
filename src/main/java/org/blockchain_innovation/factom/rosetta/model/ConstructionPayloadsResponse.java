@@ -3,9 +3,8 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.SigningPayload;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -15,9 +14,11 @@ import javax.validation.constraints.*;
 /**
  * ConstructionTransactionResponse is returned by &#x60;/construction/payloads&#x60;. It contains an unsigned transaction blob (that is usually needed to construct the a network transaction from a collection of signatures) and an array of payloads that must be signed by the caller.
  */
-@ApiModel(description = "ConstructionTransactionResponse is returned by `/construction/payloads`. It contains an unsigned transaction blob (that is usually needed to construct the a network transaction from a collection of signatures) and an array of payloads that must be signed by the caller.")
+@Schema(description = "ConstructionTransactionResponse is returned by `/construction/payloads`. It contains an unsigned transaction blob (that is usually needed to construct the a network transaction from a collection of signatures) and an array of payloads that must be signed by the caller.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class ConstructionPayloadsResponse   {
   @JsonProperty("unsigned_transaction")
   private String unsignedTransaction = null;
@@ -34,8 +35,8 @@ public class ConstructionPayloadsResponse   {
   /**
    * Get unsignedTransaction
    * @return unsignedTransaction
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     public String getUnsignedTransaction() {
@@ -59,8 +60,8 @@ public class ConstructionPayloadsResponse   {
   /**
    * Get payloads
    * @return payloads
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
     @Valid
     public List<SigningPayload> getPayloads() {

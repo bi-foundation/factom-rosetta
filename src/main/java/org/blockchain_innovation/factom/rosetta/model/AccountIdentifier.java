@@ -3,9 +3,8 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.SubAccountIdentifier;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,9 +12,11 @@ import javax.validation.constraints.*;
 /**
  * The account_identifier uniquely identifies an account within a network. All fields in the account_identifier are utilized to determine this uniqueness (including the metadata field, if populated).
  */
-@ApiModel(description = "The account_identifier uniquely identifies an account within a network. All fields in the account_identifier are utilized to determine this uniqueness (including the metadata field, if populated).")
+@Schema(description = "The account_identifier uniquely identifies an account within a network. All fields in the account_identifier are utilized to determine this uniqueness (including the metadata field, if populated).")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class AccountIdentifier   {
   @JsonProperty("address")
   private String address = null;
@@ -34,8 +35,8 @@ public class AccountIdentifier   {
   /**
    * The address may be a cryptographic public key (or some encoding of it) or a provided username.
    * @return address
-  **/
-  @ApiModelProperty(example = "0x3a065000ab4183c6bf581dc1e55a605455fc6d61", required = true, value = "The address may be a cryptographic public key (or some encoding of it) or a provided username.")
+   **/
+  @Schema(example = "0x3a065000ab4183c6bf581dc1e55a605455fc6d61", required = true, description = "The address may be a cryptographic public key (or some encoding of it) or a provided username.")
       @NotNull
 
     public String getAddress() {
@@ -54,8 +55,8 @@ public class AccountIdentifier   {
   /**
    * Get subAccount
    * @return subAccount
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     @Valid
     public SubAccountIdentifier getSubAccount() {
@@ -74,8 +75,8 @@ public class AccountIdentifier   {
   /**
    * Blockchains that utilize a username model (where the address is not a derivative of a cryptographic public key) should specify the public key(s) owned by the address in metadata.
    * @return metadata
-  **/
-  @ApiModelProperty(value = "Blockchains that utilize a username model (where the address is not a derivative of a cryptographic public key) should specify the public key(s) owned by the address in metadata.")
+   **/
+  @Schema(description = "Blockchains that utilize a username model (where the address is not a derivative of a cryptographic public key) should specify the public key(s) owned by the address in metadata.")
   
     public Object getMetadata() {
     return metadata;

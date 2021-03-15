@@ -3,9 +3,8 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.NetworkIdentifier;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,9 +12,11 @@ import javax.validation.constraints.*;
 /**
  * ConstructionParseRequest is the input to the &#x60;/construction/parse&#x60; endpoint. It allows the caller to parse either an unsigned or signed transaction.
  */
-@ApiModel(description = "ConstructionParseRequest is the input to the `/construction/parse` endpoint. It allows the caller to parse either an unsigned or signed transaction.")
+@Schema(description = "ConstructionParseRequest is the input to the `/construction/parse` endpoint. It allows the caller to parse either an unsigned or signed transaction.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class ConstructionParseRequest   {
   @JsonProperty("network_identifier")
   private NetworkIdentifier networkIdentifier = null;
@@ -34,8 +35,8 @@ public class ConstructionParseRequest   {
   /**
    * Get networkIdentifier
    * @return networkIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -55,8 +56,8 @@ public class ConstructionParseRequest   {
   /**
    * Signed is a boolean indicating whether the transaction is signed.
    * @return signed
-  **/
-  @ApiModelProperty(required = true, value = "Signed is a boolean indicating whether the transaction is signed.")
+   **/
+  @Schema(required = true, description = "Signed is a boolean indicating whether the transaction is signed.")
       @NotNull
 
     public Boolean isSigned() {
@@ -75,8 +76,8 @@ public class ConstructionParseRequest   {
   /**
    * This must be either the unsigned transaction blob returned by `/construction/payloads` or the signed transaction blob returned by `/construction/combine`.
    * @return transaction
-  **/
-  @ApiModelProperty(required = true, value = "This must be either the unsigned transaction blob returned by `/construction/payloads` or the signed transaction blob returned by `/construction/combine`.")
+   **/
+  @Schema(required = true, description = "This must be either the unsigned transaction blob returned by `/construction/payloads` or the signed transaction blob returned by `/construction/combine`.")
       @NotNull
 
     public String getTransaction() {

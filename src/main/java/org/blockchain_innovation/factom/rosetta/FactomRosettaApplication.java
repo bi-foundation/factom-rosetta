@@ -5,13 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@EnableSwagger2
+@EnableConfigurationProperties(RosettaConfig.class)
 @EnableCaching
 @Import(FactomConfiguration.class)
 @ComponentScan(basePackages = {"org.blockchain_innovation.factom.client", "org.blockchain_innovation.factom.rosetta", "org.blockchain_innovation.factom.rosetta.api", "org.blockchain_innovation.factom.rosetta.configuration"})

@@ -3,9 +3,8 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.Currency;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,9 +12,11 @@ import javax.validation.constraints.*;
 /**
  * Amount is some Value of a Currency. It is considered invalid to specify a Value without a Currency.
  */
-@ApiModel(description = "Amount is some Value of a Currency. It is considered invalid to specify a Value without a Currency.")
+@Schema(description = "Amount is some Value of a Currency. It is considered invalid to specify a Value without a Currency.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class Amount   {
   @JsonProperty("value")
   private String value = null;
@@ -34,8 +35,8 @@ public class Amount   {
   /**
    * Value of the transaction in atomic units represented as an arbitrary-sized signed integer. For example, 1 BTC would be represented by a value of 100000000.
    * @return value
-  **/
-  @ApiModelProperty(example = "1238089899992", required = true, value = "Value of the transaction in atomic units represented as an arbitrary-sized signed integer. For example, 1 BTC would be represented by a value of 100000000.")
+   **/
+  @Schema(example = "1238089899992", required = true, description = "Value of the transaction in atomic units represented as an arbitrary-sized signed integer. For example, 1 BTC would be represented by a value of 100000000.")
       @NotNull
 
     public String getValue() {
@@ -54,8 +55,8 @@ public class Amount   {
   /**
    * Get currency
    * @return currency
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -75,8 +76,8 @@ public class Amount   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     public Object getMetadata() {
     return metadata;

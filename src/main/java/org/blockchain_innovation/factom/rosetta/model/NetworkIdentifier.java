@@ -3,9 +3,8 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.SubNetworkIdentifier;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,9 +12,11 @@ import javax.validation.constraints.*;
 /**
  * The network_identifier specifies which network a particular object is associated with.
  */
-@ApiModel(description = "The network_identifier specifies which network a particular object is associated with.")
+@Schema(description = "The network_identifier specifies which network a particular object is associated with.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class NetworkIdentifier   {
   @JsonProperty("blockchain")
   private String blockchain = null;
@@ -34,8 +35,8 @@ public class NetworkIdentifier   {
   /**
    * Get blockchain
    * @return blockchain
-  **/
-  @ApiModelProperty(example = "bitcoin", required = true, value = "")
+   **/
+  @Schema(example = "bitcoin", required = true, description = "")
       @NotNull
 
     public String getBlockchain() {
@@ -54,8 +55,8 @@ public class NetworkIdentifier   {
   /**
    * If a blockchain has a specific chain-id or network identifier, it should go in this field. It is up to the client to determine which network-specific identifier is mainnet or testnet.
    * @return network
-  **/
-  @ApiModelProperty(example = "mainnet", required = true, value = "If a blockchain has a specific chain-id or network identifier, it should go in this field. It is up to the client to determine which network-specific identifier is mainnet or testnet.")
+   **/
+  @Schema(example = "mainnet", required = true, description = "If a blockchain has a specific chain-id or network identifier, it should go in this field. It is up to the client to determine which network-specific identifier is mainnet or testnet.")
       @NotNull
 
     public String getNetwork() {
@@ -74,8 +75,8 @@ public class NetworkIdentifier   {
   /**
    * Get subNetworkIdentifier
    * @return subNetworkIdentifier
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     @Valid
     public SubNetworkIdentifier getSubNetworkIdentifier() {

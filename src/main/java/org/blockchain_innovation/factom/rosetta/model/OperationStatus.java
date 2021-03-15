@@ -3,8 +3,7 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,9 +11,11 @@ import javax.validation.constraints.*;
 /**
  * OperationStatus is utilized to indicate which Operation status are considered successful.
  */
-@ApiModel(description = "OperationStatus is utilized to indicate which Operation status are considered successful.")
+@Schema(description = "OperationStatus is utilized to indicate which Operation status are considered successful.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class OperationStatus   {
   @JsonProperty("status")
   private String status = null;
@@ -30,8 +31,8 @@ public class OperationStatus   {
   /**
    * The status is the network-specific status of the operation.
    * @return status
-  **/
-  @ApiModelProperty(required = true, value = "The status is the network-specific status of the operation.")
+   **/
+  @Schema(required = true, description = "The status is the network-specific status of the operation.")
       @NotNull
 
     public String getStatus() {
@@ -50,8 +51,8 @@ public class OperationStatus   {
   /**
    * An Operation is considered successful if the Operation.Amount should affect the Operation.Account. Some blockchains (like Bitcoin) only include successful operations in blocks but other blockchains (like Ethereum) include unsuccessful operations that incur a fee. To reconcile the computed balance from the stream of Operations, it is critical to understand which Operation.Status indicate an Operation is successful and should affect an Account.
    * @return successful
-  **/
-  @ApiModelProperty(required = true, value = "An Operation is considered successful if the Operation.Amount should affect the Operation.Account. Some blockchains (like Bitcoin) only include successful operations in blocks but other blockchains (like Ethereum) include unsuccessful operations that incur a fee. To reconcile the computed balance from the stream of Operations, it is critical to understand which Operation.Status indicate an Operation is successful and should affect an Account.")
+   **/
+  @Schema(required = true, description = "An Operation is considered successful if the Operation.Amount should affect the Operation.Account. Some blockchains (like Bitcoin) only include successful operations in blocks but other blockchains (like Ethereum) include unsuccessful operations that incur a fee. To reconcile the computed balance from the stream of Operations, it is critical to understand which Operation.Status indicate an Operation is successful and should affect an Account.")
       @NotNull
 
     public Boolean isSuccessful() {

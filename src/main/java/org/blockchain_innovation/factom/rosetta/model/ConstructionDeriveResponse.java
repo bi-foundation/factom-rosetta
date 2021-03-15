@@ -3,8 +3,8 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.blockchain_innovation.factom.rosetta.model.AccountIdentifier;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,12 +12,17 @@ import javax.validation.constraints.*;
 /**
  * ConstructionDeriveResponse is returned by the &#x60;/construction/derive&#x60; endpoint.
  */
-@ApiModel(description = "ConstructionDeriveResponse is returned by the `/construction/derive` endpoint.")
+@Schema(description = "ConstructionDeriveResponse is returned by the `/construction/derive` endpoint.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class ConstructionDeriveResponse   {
   @JsonProperty("address")
   private String address = null;
+
+  @JsonProperty("account_identifier")
+  private AccountIdentifier accountIdentifier = null;
 
   @JsonProperty("metadata")
   private Object metadata = null;
@@ -28,18 +33,37 @@ public class ConstructionDeriveResponse   {
   }
 
   /**
-   * Address in network-specific format.
+   * [DEPRECATED by `account_identifier` in `v1.4.4`] Address in network-specific format.
    * @return address
-  **/
-  @ApiModelProperty(required = true, value = "Address in network-specific format.")
-      @NotNull
-
+   **/
+  @Schema(description = "[DEPRECATED by `account_identifier` in `v1.4.4`] Address in network-specific format.")
+  
     public String getAddress() {
     return address;
   }
 
   public void setAddress(String address) {
     this.address = address;
+  }
+
+  public ConstructionDeriveResponse accountIdentifier(AccountIdentifier accountIdentifier) {
+    this.accountIdentifier = accountIdentifier;
+    return this;
+  }
+
+  /**
+   * Get accountIdentifier
+   * @return accountIdentifier
+   **/
+  @Schema(description = "")
+  
+    @Valid
+    public AccountIdentifier getAccountIdentifier() {
+    return accountIdentifier;
+  }
+
+  public void setAccountIdentifier(AccountIdentifier accountIdentifier) {
+    this.accountIdentifier = accountIdentifier;
   }
 
   public ConstructionDeriveResponse metadata(Object metadata) {
@@ -50,8 +74,8 @@ public class ConstructionDeriveResponse   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     public Object getMetadata() {
     return metadata;
@@ -72,12 +96,13 @@ public class ConstructionDeriveResponse   {
     }
     ConstructionDeriveResponse constructionDeriveResponse = (ConstructionDeriveResponse) o;
     return Objects.equals(this.address, constructionDeriveResponse.address) &&
+        Objects.equals(this.accountIdentifier, constructionDeriveResponse.accountIdentifier) &&
         Objects.equals(this.metadata, constructionDeriveResponse.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(address, metadata);
+    return Objects.hash(address, accountIdentifier, metadata);
   }
 
   @Override
@@ -86,6 +111,7 @@ public class ConstructionDeriveResponse   {
     sb.append("class ConstructionDeriveResponse {\n");
     
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
+    sb.append("    accountIdentifier: ").append(toIndentedString(accountIdentifier)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

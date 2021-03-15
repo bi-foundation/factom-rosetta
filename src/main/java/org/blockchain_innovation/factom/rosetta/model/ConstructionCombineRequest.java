@@ -3,10 +3,9 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.NetworkIdentifier;
 import org.blockchain_innovation.factom.rosetta.model.Signature;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -16,9 +15,11 @@ import javax.validation.constraints.*;
 /**
  * ConstructionCombineRequest is the input to the &#x60;/construction/combine&#x60; endpoint. It contains the unsigned transaction blob returned by &#x60;/construction/payloads&#x60; and all required signatures to create a network transaction.
  */
-@ApiModel(description = "ConstructionCombineRequest is the input to the `/construction/combine` endpoint. It contains the unsigned transaction blob returned by `/construction/payloads` and all required signatures to create a network transaction.")
+@Schema(description = "ConstructionCombineRequest is the input to the `/construction/combine` endpoint. It contains the unsigned transaction blob returned by `/construction/payloads` and all required signatures to create a network transaction.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class ConstructionCombineRequest   {
   @JsonProperty("network_identifier")
   private NetworkIdentifier networkIdentifier = null;
@@ -38,8 +39,8 @@ public class ConstructionCombineRequest   {
   /**
    * Get networkIdentifier
    * @return networkIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -59,8 +60,8 @@ public class ConstructionCombineRequest   {
   /**
    * Get unsignedTransaction
    * @return unsignedTransaction
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     public String getUnsignedTransaction() {
@@ -84,8 +85,8 @@ public class ConstructionCombineRequest   {
   /**
    * Get signatures
    * @return signatures
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
     @Valid
     public List<Signature> getSignatures() {

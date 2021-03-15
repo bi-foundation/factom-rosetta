@@ -3,8 +3,7 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,9 +11,11 @@ import javax.validation.constraints.*;
 /**
  * Currency is composed of a canonical Symbol and Decimals. This Decimals value is used to convert an Amount.Value from atomic units (Satoshis) to standard units (Bitcoins).
  */
-@ApiModel(description = "Currency is composed of a canonical Symbol and Decimals. This Decimals value is used to convert an Amount.Value from atomic units (Satoshis) to standard units (Bitcoins).")
+@Schema(description = "Currency is composed of a canonical Symbol and Decimals. This Decimals value is used to convert an Amount.Value from atomic units (Satoshis) to standard units (Bitcoins).")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class Currency   {
   @JsonProperty("symbol")
   private String symbol = null;
@@ -33,8 +34,8 @@ public class Currency   {
   /**
    * Canonical symbol associated with a currency.
    * @return symbol
-  **/
-  @ApiModelProperty(example = "BTC", required = true, value = "Canonical symbol associated with a currency.")
+   **/
+  @Schema(example = "BTC", required = true, description = "Canonical symbol associated with a currency.")
       @NotNull
 
     public String getSymbol() {
@@ -54,8 +55,8 @@ public class Currency   {
    * Number of decimal places in the standard unit representation of the amount. For example, BTC has 8 decimals. Note that it is not possible to represent the value of some currency in atomic units that is not base 10.
    * minimum: 0
    * @return decimals
-  **/
-  @ApiModelProperty(example = "8", required = true, value = "Number of decimal places in the standard unit representation of the amount. For example, BTC has 8 decimals. Note that it is not possible to represent the value of some currency in atomic units that is not base 10.")
+   **/
+  @Schema(example = "8", required = true, description = "Number of decimal places in the standard unit representation of the amount. For example, BTC has 8 decimals. Note that it is not possible to represent the value of some currency in atomic units that is not base 10.")
       @NotNull
 
   @Min(0)  public Integer getDecimals() {
@@ -74,8 +75,8 @@ public class Currency   {
   /**
    * Any additional information related to the currency itself. For example, it would be useful to populate this object with the contract address of an ERC-20 token.
    * @return metadata
-  **/
-  @ApiModelProperty(example = "{\"Issuer\":\"Satoshi\"}", value = "Any additional information related to the currency itself. For example, it would be useful to populate this object with the contract address of an ERC-20 token.")
+   **/
+  @Schema(example = "{\"Issuer\":\"Satoshi\"}", description = "Any additional information related to the currency itself. For example, it would be useful to populate this object with the contract address of an ERC-20 token.")
   
     public Object getMetadata() {
     return metadata;

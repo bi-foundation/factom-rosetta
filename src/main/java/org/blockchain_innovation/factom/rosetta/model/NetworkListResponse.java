@@ -3,9 +3,8 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.NetworkIdentifier;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -15,9 +14,11 @@ import javax.validation.constraints.*;
 /**
  * A NetworkListResponse contains all NetworkIdentifiers that the node can serve information for.
  */
-@ApiModel(description = "A NetworkListResponse contains all NetworkIdentifiers that the node can serve information for.")
+@Schema(description = "A NetworkListResponse contains all NetworkIdentifiers that the node can serve information for.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class NetworkListResponse   {
   @JsonProperty("network_identifiers")
   @Valid
@@ -36,8 +37,8 @@ public class NetworkListResponse   {
   /**
    * Get networkIdentifiers
    * @return networkIdentifiers
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
     @Valid
     public List<NetworkIdentifier> getNetworkIdentifiers() {

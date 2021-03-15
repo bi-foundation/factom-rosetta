@@ -3,27 +3,28 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.TransactionIdentifier;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * A TransactionSubmitResponse contains the transaction_identifier of a submitted transaction that was accepted into the mempool.
+ * TransactionIdentifierResponse contains the transaction_identifier of a transaction that was submitted to either &#x60;/construction/hash&#x60; or &#x60;/construction/submit&#x60;.
  */
-@ApiModel(description = "A TransactionSubmitResponse contains the transaction_identifier of a submitted transaction that was accepted into the mempool.")
+@Schema(description = "TransactionIdentifierResponse contains the transaction_identifier of a transaction that was submitted to either `/construction/hash` or `/construction/submit`.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
-public class ConstructionSubmitResponse   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
+public class TransactionIdentifierResponse   {
   @JsonProperty("transaction_identifier")
   private TransactionIdentifier transactionIdentifier = null;
 
   @JsonProperty("metadata")
   private Object metadata = null;
 
-  public ConstructionSubmitResponse transactionIdentifier(TransactionIdentifier transactionIdentifier) {
+  public TransactionIdentifierResponse transactionIdentifier(TransactionIdentifier transactionIdentifier) {
     this.transactionIdentifier = transactionIdentifier;
     return this;
   }
@@ -31,8 +32,8 @@ public class ConstructionSubmitResponse   {
   /**
    * Get transactionIdentifier
    * @return transactionIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -44,7 +45,7 @@ public class ConstructionSubmitResponse   {
     this.transactionIdentifier = transactionIdentifier;
   }
 
-  public ConstructionSubmitResponse metadata(Object metadata) {
+  public TransactionIdentifierResponse metadata(Object metadata) {
     this.metadata = metadata;
     return this;
   }
@@ -52,8 +53,8 @@ public class ConstructionSubmitResponse   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     public Object getMetadata() {
     return metadata;
@@ -72,9 +73,9 @@ public class ConstructionSubmitResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConstructionSubmitResponse constructionSubmitResponse = (ConstructionSubmitResponse) o;
-    return Objects.equals(this.transactionIdentifier, constructionSubmitResponse.transactionIdentifier) &&
-        Objects.equals(this.metadata, constructionSubmitResponse.metadata);
+    TransactionIdentifierResponse transactionIdentifierResponse = (TransactionIdentifierResponse) o;
+    return Objects.equals(this.transactionIdentifier, transactionIdentifierResponse.transactionIdentifier) &&
+        Objects.equals(this.metadata, transactionIdentifierResponse.metadata);
   }
 
   @Override
@@ -85,7 +86,7 @@ public class ConstructionSubmitResponse   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConstructionSubmitResponse {\n");
+    sb.append("class TransactionIdentifierResponse {\n");
     
     sb.append("    transactionIdentifier: ").append(toIndentedString(transactionIdentifier)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");

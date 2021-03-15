@@ -18,16 +18,21 @@ public class RosettaExceptions {
 
     }
 
-    public static class AssertionException extends java.lang.RuntimeException {
+    public static class AssertionException extends RuntimeException {
         public AssertionException(String message) {
             super(message);
         }
     }
 
-    public static class NotImplementedException extends java.lang.RuntimeException {
+    public static class NotImplementedException extends RuntimeException {
         public NotImplementedException(String message) {
             super(message);
         }
     }
 
+    public static class NotFoundException extends RuntimeException {
+        public NotFoundException(String message) {
+            super(message);
+        }
+    }
 }

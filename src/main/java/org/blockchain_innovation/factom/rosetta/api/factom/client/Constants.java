@@ -9,7 +9,7 @@ public interface Constants {
     String TESTNET = "testnet";
 
     Currency CURRENCY_FCT = new Currency().symbol("FCT").decimals(8);
-    Currency CURRENCY_EC = new Currency().symbol("EC").decimals(8);
+    Currency CURRENCY_EC = new Currency().symbol("EC").decimals(0);
 
     String DBENTRIES = "dbentries";
     String CHAINID = "chainid";

@@ -3,10 +3,9 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.BlockIdentifier;
 import org.blockchain_innovation.factom.rosetta.model.Transaction;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -14,11 +13,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Blocks contain an array of Transactions that occurred at a particular BlockIdentifier.
+ * Blocks contain an array of Transactions that occurred at a particular BlockIdentifier. A hard requirement for blocks returned by Rosetta implementations is that they MUST be _inalterable_: once a client has requested and received a block identified by a specific BlockIndentifier, all future calls for that same BlockIdentifier must return the same block contents.
  */
-@ApiModel(description = "Blocks contain an array of Transactions that occurred at a particular BlockIdentifier.")
+@Schema(description = "Blocks contain an array of Transactions that occurred at a particular BlockIdentifier. A hard requirement for blocks returned by Rosetta implementations is that they MUST be _inalterable_: once a client has requested and received a block identified by a specific BlockIndentifier, all future calls for that same BlockIdentifier must return the same block contents.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class Block   {
   @JsonProperty("block_identifier")
   private BlockIdentifier blockIdentifier = null;
@@ -44,8 +45,8 @@ public class Block   {
   /**
    * Get blockIdentifier
    * @return blockIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -65,8 +66,8 @@ public class Block   {
   /**
    * Get parentBlockIdentifier
    * @return parentBlockIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -86,8 +87,8 @@ public class Block   {
   /**
    * Get timestamp
    * @return timestamp
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     public Long getTimestamp() {
@@ -111,8 +112,8 @@ public class Block   {
   /**
    * Get transactions
    * @return transactions
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
     @Valid
     public List<Transaction> getTransactions() {
@@ -131,8 +132,8 @@ public class Block   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(example = "{\"transactions_root\":\"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347\",\"difficulty\":\"123891724987128947\"}", value = "")
+   **/
+  @Schema(example = "{\"transactions_root\":\"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347\",\"difficulty\":\"123891724987128947\"}", description = "")
   
     public Object getMetadata() {
     return metadata;

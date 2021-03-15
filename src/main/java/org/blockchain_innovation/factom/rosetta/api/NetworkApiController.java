@@ -1,5 +1,8 @@
 package org.blockchain_innovation.factom.rosetta.api;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.blockchain_innovation.factom.rosetta.model.Error;
 import org.blockchain_innovation.factom.rosetta.model.MetadataRequest;
 import org.blockchain_innovation.factom.rosetta.model.NetworkListResponse;
@@ -48,15 +51,15 @@ public class NetworkApiController implements NetworkApi {
         this.delegate = networkDelegate;
     }
 
-    public ResponseEntity<NetworkListResponse> networkList(@ApiParam(value = "", required = true) @Valid @RequestBody MetadataRequest metadataRequest) {
+    public ResponseEntity<NetworkListResponse> networkList(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody MetadataRequest metadataRequest) {
         return new ResponseEntity<NetworkListResponse>(delegate.networkList(metadataRequest), HttpStatus.OK);
     }
 
-    public ResponseEntity<NetworkOptionsResponse> networkOptions(@ApiParam(value = "", required = true) @Valid @RequestBody NetworkRequest networkRequest) {
+    public ResponseEntity<NetworkOptionsResponse> networkOptions(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody NetworkRequest networkRequest) {
         return new ResponseEntity<NetworkOptionsResponse>(delegate.networkOptions(networkRequest), HttpStatus.OK);
     }
 
-    public ResponseEntity<NetworkStatusResponse> networkStatus(@ApiParam(value = "", required = true) @Valid @RequestBody NetworkRequest networkRequest) {
+    public ResponseEntity<NetworkStatusResponse> networkStatus(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody NetworkRequest networkRequest) {
         return new ResponseEntity<NetworkStatusResponse>(delegate.networkStatus(networkRequest), HttpStatus.OK);
     }
 

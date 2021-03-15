@@ -3,8 +3,7 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,9 +11,11 @@ import javax.validation.constraints.*;
 /**
  * The operation_identifier uniquely identifies an operation within a transaction.
  */
-@ApiModel(description = "The operation_identifier uniquely identifies an operation within a transaction.")
+@Schema(description = "The operation_identifier uniquely identifies an operation within a transaction.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class OperationIdentifier   {
   @JsonProperty("index")
   private Long index = null;
@@ -31,8 +32,8 @@ public class OperationIdentifier   {
    * The operation index is used to ensure each operation has a unique identifier within a transaction. This index is only relative to the transaction and NOT GLOBAL. The operations in each transaction should start from index 0. To clarify, there may not be any notion of an operation index in the blockchain being described.
    * minimum: 0
    * @return index
-  **/
-  @ApiModelProperty(example = "1", required = true, value = "The operation index is used to ensure each operation has a unique identifier within a transaction. This index is only relative to the transaction and NOT GLOBAL. The operations in each transaction should start from index 0. To clarify, there may not be any notion of an operation index in the blockchain being described.")
+   **/
+  @Schema(example = "5", required = true, description = "The operation index is used to ensure each operation has a unique identifier within a transaction. This index is only relative to the transaction and NOT GLOBAL. The operations in each transaction should start from index 0. To clarify, there may not be any notion of an operation index in the blockchain being described.")
       @NotNull
 
   @Min(0L)  public Long getIndex() {
@@ -52,8 +53,8 @@ public class OperationIdentifier   {
    * Some blockchains specify an operation index that is essential for client use. For example, Bitcoin uses a network_index to identify which UTXO was used in a transaction. network_index should not be populated if there is no notion of an operation index in a blockchain (typically most account-based blockchains).
    * minimum: 0
    * @return networkIndex
-  **/
-  @ApiModelProperty(example = "0", value = "Some blockchains specify an operation index that is essential for client use. For example, Bitcoin uses a network_index to identify which UTXO was used in a transaction. network_index should not be populated if there is no notion of an operation index in a blockchain (typically most account-based blockchains).")
+   **/
+  @Schema(example = "0", description = "Some blockchains specify an operation index that is essential for client use. For example, Bitcoin uses a network_index to identify which UTXO was used in a transaction. network_index should not be populated if there is no notion of an operation index in a blockchain (typically most account-based blockchains).")
   
   @Min(0L)  public Long getNetworkIndex() {
     return networkIndex;

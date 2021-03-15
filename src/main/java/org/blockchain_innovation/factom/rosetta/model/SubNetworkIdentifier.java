@@ -3,8 +3,7 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,9 +11,11 @@ import javax.validation.constraints.*;
 /**
  * In blockchains with sharded state, the SubNetworkIdentifier is required to query some object on a specific shard. This identifier is optional for all non-sharded blockchains.
  */
-@ApiModel(description = "In blockchains with sharded state, the SubNetworkIdentifier is required to query some object on a specific shard. This identifier is optional for all non-sharded blockchains.")
+@Schema(description = "In blockchains with sharded state, the SubNetworkIdentifier is required to query some object on a specific shard. This identifier is optional for all non-sharded blockchains.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class SubNetworkIdentifier   {
   @JsonProperty("network")
   private String network = null;
@@ -30,8 +31,8 @@ public class SubNetworkIdentifier   {
   /**
    * Get network
    * @return network
-  **/
-  @ApiModelProperty(example = "shard 1", required = true, value = "")
+   **/
+  @Schema(example = "shard 1", required = true, description = "")
       @NotNull
 
     public String getNetwork() {
@@ -50,8 +51,8 @@ public class SubNetworkIdentifier   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(example = "{\"producer\":\"0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5\"}", value = "")
+   **/
+  @Schema(example = "{\"producer\":\"0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5\"}", description = "")
   
     public Object getMetadata() {
     return metadata;

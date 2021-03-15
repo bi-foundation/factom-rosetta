@@ -3,22 +3,27 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.blockchain_innovation.factom.rosetta.model.AccountIdentifier;
 import org.blockchain_innovation.factom.rosetta.model.SignatureType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * SigningPayload is signed by the client with the keypair associated with an address using the specified SignatureType. SignatureType can be optionally populated if there is a restriction on the signature scheme that can be used to sign the payload.
+ * SigningPayload is signed by the client with the keypair associated with an AccountIdentifier using the specified SignatureType. SignatureType can be optionally populated if there is a restriction on the signature scheme that can be used to sign the payload.
  */
-@ApiModel(description = "SigningPayload is signed by the client with the keypair associated with an address using the specified SignatureType. SignatureType can be optionally populated if there is a restriction on the signature scheme that can be used to sign the payload.")
+@Schema(description = "SigningPayload is signed by the client with the keypair associated with an AccountIdentifier using the specified SignatureType. SignatureType can be optionally populated if there is a restriction on the signature scheme that can be used to sign the payload.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class SigningPayload   {
   @JsonProperty("address")
   private String address = null;
+
+  @JsonProperty("account_identifier")
+  private AccountIdentifier accountIdentifier = null;
 
   @JsonProperty("hex_bytes")
   private String hexBytes = null;
@@ -32,18 +37,37 @@ public class SigningPayload   {
   }
 
   /**
-   * The network-specific address of the account that should sign the payload.
+   * [DEPRECATED by `account_identifier` in `v1.4.4`] The network-specific address of the account that should sign the payload.
    * @return address
-  **/
-  @ApiModelProperty(required = true, value = "The network-specific address of the account that should sign the payload.")
-      @NotNull
-
+   **/
+  @Schema(description = "[DEPRECATED by `account_identifier` in `v1.4.4`] The network-specific address of the account that should sign the payload.")
+  
     public String getAddress() {
     return address;
   }
 
   public void setAddress(String address) {
     this.address = address;
+  }
+
+  public SigningPayload accountIdentifier(AccountIdentifier accountIdentifier) {
+    this.accountIdentifier = accountIdentifier;
+    return this;
+  }
+
+  /**
+   * Get accountIdentifier
+   * @return accountIdentifier
+   **/
+  @Schema(description = "")
+  
+    @Valid
+    public AccountIdentifier getAccountIdentifier() {
+    return accountIdentifier;
+  }
+
+  public void setAccountIdentifier(AccountIdentifier accountIdentifier) {
+    this.accountIdentifier = accountIdentifier;
   }
 
   public SigningPayload hexBytes(String hexBytes) {
@@ -54,8 +78,8 @@ public class SigningPayload   {
   /**
    * Get hexBytes
    * @return hexBytes
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     public String getHexBytes() {
@@ -74,8 +98,8 @@ public class SigningPayload   {
   /**
    * Get signatureType
    * @return signatureType
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     @Valid
     public SignatureType getSignatureType() {
@@ -97,13 +121,14 @@ public class SigningPayload   {
     }
     SigningPayload signingPayload = (SigningPayload) o;
     return Objects.equals(this.address, signingPayload.address) &&
+        Objects.equals(this.accountIdentifier, signingPayload.accountIdentifier) &&
         Objects.equals(this.hexBytes, signingPayload.hexBytes) &&
         Objects.equals(this.signatureType, signingPayload.signatureType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(address, hexBytes, signatureType);
+    return Objects.hash(address, accountIdentifier, hexBytes, signatureType);
   }
 
   @Override
@@ -112,6 +137,7 @@ public class SigningPayload   {
     sb.append("class SigningPayload {\n");
     
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
+    sb.append("    accountIdentifier: ").append(toIndentedString(accountIdentifier)).append("\n");
     sb.append("    hexBytes: ").append(toIndentedString(hexBytes)).append("\n");
     sb.append("    signatureType: ").append(toIndentedString(signatureType)).append("\n");
     sb.append("}");

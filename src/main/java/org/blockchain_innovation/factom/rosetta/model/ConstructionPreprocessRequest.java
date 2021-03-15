@@ -3,10 +3,10 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.blockchain_innovation.factom.rosetta.model.Amount;
 import org.blockchain_innovation.factom.rosetta.model.NetworkIdentifier;
 import org.blockchain_innovation.factom.rosetta.model.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -14,11 +14,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * ConstructionPreprocessRequest is passed to the &#x60;/construction/preprocess&#x60; endpoint so that a Rosetta implementation can determine which metadata it needs to request for construction.
+ * ConstructionPreprocessRequest is passed to the &#x60;/construction/preprocess&#x60; endpoint so that a Rosetta implementation can determine which metadata it needs to request for construction. Metadata provided in this object should NEVER be a product of live data (i.e. the caller must follow some network-specific data fetching strategy outside of the Construction API to populate required Metadata). If live data is required for construction, it MUST be fetched in the call to &#x60;/construction/metadata&#x60;. The caller can provide a max fee they are willing to pay for a transaction. This is an array in the case fees must be paid in multiple currencies. The caller can also provide a suggested fee multiplier to indicate that the suggested fee should be scaled. This may be used to set higher fees for urgent transactions or to pay lower fees when there is less urgency. It is assumed that providing a very low multiplier (like 0.0001) will never lead to a transaction being created with a fee less than the minimum network fee (if applicable). In the case that the caller provides both a max fee and a suggested fee multiplier, the max fee will set an upper bound on the suggested fee (regardless of the multiplier provided).
  */
-@ApiModel(description = "ConstructionPreprocessRequest is passed to the `/construction/preprocess` endpoint so that a Rosetta implementation can determine which metadata it needs to request for construction.")
+@Schema(description = "ConstructionPreprocessRequest is passed to the `/construction/preprocess` endpoint so that a Rosetta implementation can determine which metadata it needs to request for construction. Metadata provided in this object should NEVER be a product of live data (i.e. the caller must follow some network-specific data fetching strategy outside of the Construction API to populate required Metadata). If live data is required for construction, it MUST be fetched in the call to `/construction/metadata`. The caller can provide a max fee they are willing to pay for a transaction. This is an array in the case fees must be paid in multiple currencies. The caller can also provide a suggested fee multiplier to indicate that the suggested fee should be scaled. This may be used to set higher fees for urgent transactions or to pay lower fees when there is less urgency. It is assumed that providing a very low multiplier (like 0.0001) will never lead to a transaction being created with a fee less than the minimum network fee (if applicable). In the case that the caller provides both a max fee and a suggested fee multiplier, the max fee will set an upper bound on the suggested fee (regardless of the multiplier provided).")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class ConstructionPreprocessRequest   {
   @JsonProperty("network_identifier")
   private NetworkIdentifier networkIdentifier = null;
@@ -30,6 +32,13 @@ public class ConstructionPreprocessRequest   {
   @JsonProperty("metadata")
   private Object metadata = null;
 
+  @JsonProperty("max_fee")
+  @Valid
+  private List<Amount> maxFee = null;
+
+  @JsonProperty("suggested_fee_multiplier")
+  private Double suggestedFeeMultiplier = null;
+
   public ConstructionPreprocessRequest networkIdentifier(NetworkIdentifier networkIdentifier) {
     this.networkIdentifier = networkIdentifier;
     return this;
@@ -38,8 +47,8 @@ public class ConstructionPreprocessRequest   {
   /**
    * Get networkIdentifier
    * @return networkIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -64,8 +73,8 @@ public class ConstructionPreprocessRequest   {
   /**
    * Get operations
    * @return operations
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
     @Valid
     public List<Operation> getOperations() {
@@ -84,8 +93,8 @@ public class ConstructionPreprocessRequest   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     public Object getMetadata() {
     return metadata;
@@ -93,6 +102,53 @@ public class ConstructionPreprocessRequest   {
 
   public void setMetadata(Object metadata) {
     this.metadata = metadata;
+  }
+
+  public ConstructionPreprocessRequest maxFee(List<Amount> maxFee) {
+    this.maxFee = maxFee;
+    return this;
+  }
+
+  public ConstructionPreprocessRequest addMaxFeeItem(Amount maxFeeItem) {
+    if (this.maxFee == null) {
+      this.maxFee = new ArrayList<Amount>();
+    }
+    this.maxFee.add(maxFeeItem);
+    return this;
+  }
+
+  /**
+   * Get maxFee
+   * @return maxFee
+   **/
+  @Schema(description = "")
+      @Valid
+    public List<Amount> getMaxFee() {
+    return maxFee;
+  }
+
+  public void setMaxFee(List<Amount> maxFee) {
+    this.maxFee = maxFee;
+  }
+
+  public ConstructionPreprocessRequest suggestedFeeMultiplier(Double suggestedFeeMultiplier) {
+    this.suggestedFeeMultiplier = suggestedFeeMultiplier;
+    return this;
+  }
+
+  /**
+   * Get suggestedFeeMultiplier
+   * minimum: 0
+   * @return suggestedFeeMultiplier
+   **/
+  @Schema(description = "")
+  
+  @DecimalMin("0")  public Double getSuggestedFeeMultiplier() {
+    return suggestedFeeMultiplier;
+  }
+
+  public void setSuggestedFeeMultiplier(Double suggestedFeeMultiplier) {
+    this.suggestedFeeMultiplier = suggestedFeeMultiplier;
   }
 
 
@@ -107,12 +163,14 @@ public class ConstructionPreprocessRequest   {
     ConstructionPreprocessRequest constructionPreprocessRequest = (ConstructionPreprocessRequest) o;
     return Objects.equals(this.networkIdentifier, constructionPreprocessRequest.networkIdentifier) &&
         Objects.equals(this.operations, constructionPreprocessRequest.operations) &&
-        Objects.equals(this.metadata, constructionPreprocessRequest.metadata);
+        Objects.equals(this.metadata, constructionPreprocessRequest.metadata) &&
+        Objects.equals(this.maxFee, constructionPreprocessRequest.maxFee) &&
+        Objects.equals(this.suggestedFeeMultiplier, constructionPreprocessRequest.suggestedFeeMultiplier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(networkIdentifier, operations, metadata);
+    return Objects.hash(networkIdentifier, operations, metadata, maxFee, suggestedFeeMultiplier);
   }
 
   @Override
@@ -123,6 +181,8 @@ public class ConstructionPreprocessRequest   {
     sb.append("    networkIdentifier: ").append(toIndentedString(networkIdentifier)).append("\n");
     sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    maxFee: ").append(toIndentedString(maxFee)).append("\n");
+    sb.append("    suggestedFeeMultiplier: ").append(toIndentedString(suggestedFeeMultiplier)).append("\n");
     sb.append("}");
     return sb.toString();
   }

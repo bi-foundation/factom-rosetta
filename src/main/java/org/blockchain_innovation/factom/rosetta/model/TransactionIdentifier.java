@@ -3,8 +3,7 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,9 +11,11 @@ import javax.validation.constraints.*;
 /**
  * The transaction_identifier uniquely identifies a transaction in a particular network and block or in the mempool.
  */
-@ApiModel(description = "The transaction_identifier uniquely identifies a transaction in a particular network and block or in the mempool.")
+@Schema(description = "The transaction_identifier uniquely identifies a transaction in a particular network and block or in the mempool.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class TransactionIdentifier   {
   @JsonProperty("hash")
   private String hash = null;
@@ -27,8 +28,8 @@ public class TransactionIdentifier   {
   /**
    * Any transactions that are attributable only to a block (ex: a block event) should use the hash of the block as the identifier.
    * @return hash
-  **/
-  @ApiModelProperty(example = "0x2f23fd8cca835af21f3ac375bac601f97ead75f2e79143bdf71fe2c4be043e8f", required = true, value = "Any transactions that are attributable only to a block (ex: a block event) should use the hash of the block as the identifier.")
+   **/
+  @Schema(example = "0x2f23fd8cca835af21f3ac375bac601f97ead75f2e79143bdf71fe2c4be043e8f", required = true, description = "Any transactions that are attributable only to a block (ex: a block event) should use the hash of the block as the identifier.")
       @NotNull
 
     public String getHash() {

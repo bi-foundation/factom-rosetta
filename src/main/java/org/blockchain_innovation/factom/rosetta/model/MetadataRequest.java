@@ -3,8 +3,7 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,9 +11,11 @@ import javax.validation.constraints.*;
 /**
  * A MetadataRequest is utilized in any request where the only argument is optional metadata.
  */
-@ApiModel(description = "A MetadataRequest is utilized in any request where the only argument is optional metadata.")
+@Schema(description = "A MetadataRequest is utilized in any request where the only argument is optional metadata.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class MetadataRequest   {
   @JsonProperty("metadata")
   private Object metadata = null;
@@ -27,8 +28,8 @@ public class MetadataRequest   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     public Object getMetadata() {
     return metadata;

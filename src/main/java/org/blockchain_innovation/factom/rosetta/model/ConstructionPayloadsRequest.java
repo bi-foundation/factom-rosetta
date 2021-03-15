@@ -3,10 +3,10 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.NetworkIdentifier;
 import org.blockchain_innovation.factom.rosetta.model.Operation;
+import org.blockchain_innovation.factom.rosetta.model.PublicKey;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -14,11 +14,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * ConstructionPayloadsRequest is the request to &#x60;/construction/payloads&#x60;. It contains the network, a slice of operations, and arbitrary metadata that was returned by the call to &#x60;/construction/metadata&#x60;.
+ * ConstructionPayloadsRequest is the request to &#x60;/construction/payloads&#x60;. It contains the network, a slice of operations, and arbitrary metadata that was returned by the call to &#x60;/construction/metadata&#x60;. Optionally, the request can also include an array of PublicKeys associated with the AccountIdentifiers returned in ConstructionPreprocessResponse.
  */
-@ApiModel(description = "ConstructionPayloadsRequest is the request to `/construction/payloads`. It contains the network, a slice of operations, and arbitrary metadata that was returned by the call to `/construction/metadata`.")
+@Schema(description = "ConstructionPayloadsRequest is the request to `/construction/payloads`. It contains the network, a slice of operations, and arbitrary metadata that was returned by the call to `/construction/metadata`. Optionally, the request can also include an array of PublicKeys associated with the AccountIdentifiers returned in ConstructionPreprocessResponse.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class ConstructionPayloadsRequest   {
   @JsonProperty("network_identifier")
   private NetworkIdentifier networkIdentifier = null;
@@ -30,6 +32,10 @@ public class ConstructionPayloadsRequest   {
   @JsonProperty("metadata")
   private Object metadata = null;
 
+  @JsonProperty("public_keys")
+  @Valid
+  private List<PublicKey> publicKeys = null;
+
   public ConstructionPayloadsRequest networkIdentifier(NetworkIdentifier networkIdentifier) {
     this.networkIdentifier = networkIdentifier;
     return this;
@@ -38,8 +44,8 @@ public class ConstructionPayloadsRequest   {
   /**
    * Get networkIdentifier
    * @return networkIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -64,8 +70,8 @@ public class ConstructionPayloadsRequest   {
   /**
    * Get operations
    * @return operations
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
     @Valid
     public List<Operation> getOperations() {
@@ -84,8 +90,8 @@ public class ConstructionPayloadsRequest   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(value = "")
+   **/
+  @Schema(description = "")
   
     public Object getMetadata() {
     return metadata;
@@ -93,6 +99,33 @@ public class ConstructionPayloadsRequest   {
 
   public void setMetadata(Object metadata) {
     this.metadata = metadata;
+  }
+
+  public ConstructionPayloadsRequest publicKeys(List<PublicKey> publicKeys) {
+    this.publicKeys = publicKeys;
+    return this;
+  }
+
+  public ConstructionPayloadsRequest addPublicKeysItem(PublicKey publicKeysItem) {
+    if (this.publicKeys == null) {
+      this.publicKeys = new ArrayList<PublicKey>();
+    }
+    this.publicKeys.add(publicKeysItem);
+    return this;
+  }
+
+  /**
+   * Get publicKeys
+   * @return publicKeys
+   **/
+  @Schema(description = "")
+      @Valid
+    public List<PublicKey> getPublicKeys() {
+    return publicKeys;
+  }
+
+  public void setPublicKeys(List<PublicKey> publicKeys) {
+    this.publicKeys = publicKeys;
   }
 
 
@@ -107,12 +140,13 @@ public class ConstructionPayloadsRequest   {
     ConstructionPayloadsRequest constructionPayloadsRequest = (ConstructionPayloadsRequest) o;
     return Objects.equals(this.networkIdentifier, constructionPayloadsRequest.networkIdentifier) &&
         Objects.equals(this.operations, constructionPayloadsRequest.operations) &&
-        Objects.equals(this.metadata, constructionPayloadsRequest.metadata);
+        Objects.equals(this.metadata, constructionPayloadsRequest.metadata) &&
+        Objects.equals(this.publicKeys, constructionPayloadsRequest.publicKeys);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(networkIdentifier, operations, metadata);
+    return Objects.hash(networkIdentifier, operations, metadata, publicKeys);
   }
 
   @Override
@@ -123,6 +157,7 @@ public class ConstructionPayloadsRequest   {
     sb.append("    networkIdentifier: ").append(toIndentedString(networkIdentifier)).append("\n");
     sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    publicKeys: ").append(toIndentedString(publicKeys)).append("\n");
     sb.append("}");
     return sb.toString();
   }

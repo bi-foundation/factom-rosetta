@@ -3,10 +3,9 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.Allow;
 import org.blockchain_innovation.factom.rosetta.model.Version;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,9 +13,11 @@ import javax.validation.constraints.*;
 /**
  * NetworkOptionsResponse contains information about the versioning of the node and the allowed operation statuses, operation types, and errors.
  */
-@ApiModel(description = "NetworkOptionsResponse contains information about the versioning of the node and the allowed operation statuses, operation types, and errors.")
+@Schema(description = "NetworkOptionsResponse contains information about the versioning of the node and the allowed operation statuses, operation types, and errors.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class NetworkOptionsResponse   {
   @JsonProperty("version")
   private Version version = null;
@@ -32,8 +33,8 @@ public class NetworkOptionsResponse   {
   /**
    * Get version
    * @return version
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -53,8 +54,8 @@ public class NetworkOptionsResponse   {
   /**
    * Get allow
    * @return allow
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid

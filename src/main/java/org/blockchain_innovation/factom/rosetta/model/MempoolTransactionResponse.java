@@ -3,9 +3,8 @@ package org.blockchain_innovation.factom.rosetta.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.blockchain_innovation.factom.rosetta.model.Transaction;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,9 +12,11 @@ import javax.validation.constraints.*;
 /**
  * A MempoolTransactionResponse contains an estimate of a mempool transaction. It may not be possible to know the full impact of a transaction in the mempool (ex: fee paid).
  */
-@ApiModel(description = "A MempoolTransactionResponse contains an estimate of a mempool transaction. It may not be possible to know the full impact of a transaction in the mempool (ex: fee paid).")
+@Schema(description = "A MempoolTransactionResponse contains an estimate of a mempool transaction. It may not be possible to know the full impact of a transaction in the mempool (ex: fee paid).")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-06-27T14:08:09.371Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-11T02:27:54.801Z[GMT]")
+
+
 public class MempoolTransactionResponse   {
   @JsonProperty("transaction")
   private Transaction transaction = null;
@@ -31,8 +32,8 @@ public class MempoolTransactionResponse   {
   /**
    * Get transaction
    * @return transaction
-  **/
-  @ApiModelProperty(required = true, value = "")
+   **/
+  @Schema(required = true, description = "")
       @NotNull
 
     @Valid
@@ -52,8 +53,8 @@ public class MempoolTransactionResponse   {
   /**
    * Get metadata
    * @return metadata
-  **/
-  @ApiModelProperty(example = "{\"descendant_fees\":123923,\"ancestor_count\":2}", value = "")
+   **/
+  @Schema(example = "{\"descendant_fees\":123923,\"ancestor_count\":2}", description = "")
   
     public Object getMetadata() {
     return metadata;
